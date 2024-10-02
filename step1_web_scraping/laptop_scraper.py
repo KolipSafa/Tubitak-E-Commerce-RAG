@@ -10,7 +10,7 @@ from classes.laptop import Laptop
 from helpers.get_laptop_reviews import get_laptop_reviews
 import constants.laptop_constants as constants
 
-MAX_LAPTOP_COUNT = 3
+MAX_LAPTOP_COUNT = 2
 MAX_LAPTOP_REVIEW_PAGE_COUNT = 1 # 10 reviews per one page
 CURR_PAGE_NUMBER = 1 
 
@@ -71,6 +71,7 @@ def save_laptop_as_markdown(base_directory, laptop: Laptop):
             file.write(laptop.review_to_md_text(review))
 
 laptop_db = LaptopDatabase(str(os.getenv('TUBITAK_DB_PATH')))
+
 # Laptops that will be being scrapped
 for url in all_laptop_urls:
     driver.get(url)
