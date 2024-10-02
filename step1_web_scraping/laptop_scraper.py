@@ -70,7 +70,7 @@ def save_laptop_as_markdown(base_directory, laptop: Laptop):
         with open(review_filename , 'w',encoding='utf-8') as file:
             file.write(laptop.review_to_md_text(review))
 
-laptop_db = LaptopDatabase(str(os.getenv('TUBITAK_DB_PATH')))
+laptop_db = LaptopDatabase(str(os.getenv('LAPTOP_DB_PATH')))
 
 # Laptops that will be being scrapped
 for url in all_laptop_urls:

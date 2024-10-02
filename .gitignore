@@ -1,4 +1,5 @@
-data/
+data/markdown/*
+data/db/*.db
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
