@@ -20,12 +20,6 @@ class Laptop(Product):
     
     def features_to_md_text(self):
         return textwrap.dedent(f"""
-        ---
-        laptop_id: {self.id}
-        ---
-
-        **Laptop ID**: {self.id} 
-        **Laptop Name**: {self.name} 
         **Processor Brand**: {self.processor_brand}  
         **Processor Name**: {self.processor_name}  
         **RAM**: {self.ram_capacity}  
@@ -36,12 +30,6 @@ class Laptop(Product):
     
     def review_to_md_text(self,review):
         md_text = ''
-
-        metadata = '---\n'
-        metadata += f"laptop_id: {self.id}\n"
-        metadata += '---\n\n'
-        md_text += metadata
-
         if 'title' in review and review['title']:
             md_text += f"### Review's Title: {review['title']}\n\n"
         if 'rating' in review and review['rating']:

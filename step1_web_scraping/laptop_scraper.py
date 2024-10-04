@@ -10,7 +10,7 @@ from classes.laptop import Laptop
 from helpers.get_laptop_reviews import get_laptop_reviews
 import constants.laptop_constants as constants
 
-MAX_LAPTOP_COUNT = 2
+MAX_LAPTOP_COUNT = 3
 MAX_LAPTOP_REVIEW_PAGE_COUNT = 1 # 10 reviews per one page
 CURR_PAGE_NUMBER = 1 
 
@@ -22,13 +22,12 @@ all_laptop_urls = []
 
 # Getting All Laptop Urls
 while len(all_laptop_urls) < MAX_LAPTOP_COUNT:
-    driver.get(f"https://www.flipkart.com/laptops/pr?sid=6bo,b5g&sort=popularity&page={CURR_PAGE_NUMBER}")
+    driver.get(f"https://www.flipkart.com/laptops/pr?sid=6bo%2Cb5g&sort=popularity&page={CURR_PAGE_NUMBER}")
     content = driver.page_source
     soup = BeautifulSoup(content, "html.parser")
 
     all_laptop_a = soup.findAll('a', href=True, attrs={'class': constants.ALL_LAPTOPS_A}, limit=(MAX_LAPTOP_COUNT - len(all_laptop_urls)))
 
-    # Linkleri listeye ekleme
     for a in all_laptop_a:
         all_laptop_urls.append("https://www.flipkart.com" + a['href'])
     
@@ -112,10 +111,7 @@ for url in all_laptop_urls:
     if screen_size:
         screen_size = screen_size.split('(')[1].split(')')[0]
     
-    # Get construction information
-    # WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "div._1JDTUN"))).click()
-
-    # Add the laptop to the array (Ending)
+    # Add the laptop to the array
     laptop = Laptop(url=url,name=name,processor_brand=processor_brand,
                     processor_name=processor_name,ram_capacity=ram_capacity,
                     storage_type=storage_type,storage_capacity=storage_capacity,

@@ -1,1 +1,0 @@
-# yorumların ortalama token sayısını bul ve ona göre kararlar al
