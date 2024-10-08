@@ -8,6 +8,9 @@ class Embeddings:
     def __init__(self, model_name: str) -> None:
         self.model_name = model_name
 
+    def get_model(self):
+        return SentenceTransformer(self.model_name)
+
     def get_embedding(self, text) -> list:
         model = SentenceTransformer(self.model_name)  # all-mpnet-base-v2
         embeddings = model.encode(text)

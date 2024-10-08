@@ -1,5 +1,5 @@
 from datasets import load_dataset
-
+from langchain_core.documents import Document
 
 class Dataset:
     """
@@ -20,5 +20,23 @@ class Dataset:
             }
         })
         # drop uneeded columns
-        dataset = dataset.remove_columns(["chunk_id","chunk","document_id"])
+        dataset = dataset.remove_columns(["chunk_id","chunk","document_id","laptop_id"])
         return dataset
+    
+    def get_dataset_as_documents(self):
+        dataset = load_dataset(path="json", data_files=self.dataset_path, split=self.split)
+        documents = []
+
+        for item in dataset:
+            doc = Document(
+                page_content=item['chunk'],
+                metadata={
+                    'document_id': item['document_id'],
+                    'chunk_id': item['chunk_id'],
+                    'laptop_id': item['laptop_id']
+                }
+            )
+            documents.append(doc)
+        
+        return documents
+                
