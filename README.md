@@ -2,7 +2,8 @@
 
 ## To-do List
 
-- [ ] Change faiss to langchain faiss in step3
+- [x] Update reranker for new faiss system
+- [x] Change faiss to langchain faiss in step3
 
 ## Create env file
 

@@ -62,32 +62,18 @@ if __name__ == '__main__':
     print(f"{Fore.RED}3.) Retrieve Top-K documents using FAISS...{Style.RESET_ALL}")
     query = "i need a laptop for playing gta v"
     retriever = Retriever()
-    docs = retriever.search(vector_store=vector_store, query=query, top_k=10)
+    docs_with_scores = retriever.search(vector_store=vector_store, query=query, top_k=10)
     # print(docs)
+    utils.save_docs_with_scores(docs_with_scores, 'data/retrieved_documents.json')
 
-    # # Process the results to extract necessary information
-    # results = []
-    # for doc, score in docs:
-    #     result = {
-    #         'metadata': doc.metadata,
-    #         'content': doc.page_content,
-    #         'score': score
-    #     }
-    #     results.append(result)
-
-    # # Serialize the data to JSON
-    # json_results = json.dumps(results, ensure_ascii=False, indent=4)
-
-    # # Save the JSON string to a file
-    # output_file = 'retrieved_documents.json'
-    # with open(output_file, 'w', encoding='utf-8') as f:
-    #     f.write(json_results)
-
-    # Rerank the top-n documents using DistilBERT
-    # print(f"{Fore.RED}4.) Re-Ranking documents using distilBERT and retrieving Top-N documents...{Style.RESET_ALL}")
-    # reranker = Reranker("sentence-transformers/msmarco-distilbert-base-v3")
-    # reranked_docs = reranker.rerank(docs, query, top_n=5)
+    #Rerank the top-n documents using DistilBERT
+    print(f"{Fore.RED}4.) Re-Ranking documents using distilBERT and retrieving Top-N documents...{Style.RESET_ALL}")
+    docs = [doc for doc, score in docs_with_scores]
+    reranker = Reranker("sentence-transformers/msmarco-distilbert-base-v3")
+    reranked_docs_with_scores = reranker.rerank(docs, query, top_n=5)
+    utils.save_docs_with_scores(reranked_docs_with_scores, 'data/reranked_documents.json')
     # context = "\n".join([doc[0] for doc in reranked_docs])
+    # context = "\n".join([doc.page_content for doc, score in reranked_docs_with_scores])
     
     # Generate response from OPENAI Model
     # print(f"{Fore.RED}5.) Generate reponse using LLM...{Style.RESET_ALL}")
