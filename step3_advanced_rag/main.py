@@ -1,3 +1,4 @@
+from collections import defaultdict
 import json
 import os
 import faiss
@@ -62,7 +63,7 @@ if __name__ == '__main__':
     print(f"{Fore.RED}3.) Retrieve Top-K documents using FAISS...{Style.RESET_ALL}")
     query = "i need a laptop for playing gta v"
     retriever = Retriever()
-    docs_with_scores = retriever.search(vector_store=vector_store, query=query, top_k=10)
+    docs_with_scores = retriever.search(vector_store=vector_store, query=query, top_k=5)
     # print(docs)
     utils.save_docs_with_scores(docs_with_scores, 'data/retrieved_documents.json')
 
@@ -72,11 +73,44 @@ if __name__ == '__main__':
     reranker = Reranker("sentence-transformers/msmarco-distilbert-base-v3")
     reranked_docs_with_scores = reranker.rerank(docs, query, top_n=5)
     utils.save_docs_with_scores(reranked_docs_with_scores, 'data/reranked_documents.json')
-    # context = "\n".join([doc[0] for doc in reranked_docs])
-    # context = "\n".join([doc.page_content for doc, score in reranked_docs_with_scores])
     
-    # Generate response from OPENAI Model
-    # print(f"{Fore.RED}5.) Generate reponse using LLM...{Style.RESET_ALL}")
-    # llm = LLM(model=os.getenv("MODEL_NAME"), temperature=0)
-    # llm_response = llm.generate(query=query, context=context)
-    # print(f"Answer: {Fore.GREEN}{llm_response}{Style.RESET_ALL}")
+    # context = (
+    # "<laptops>\n" + 
+    # "\n".join([
+    #     f"  <laptop>\n"
+    #     f"    <laptop_id>{doc.metadata['laptop_id']}</laptop_id>\n"
+    #     f"    <description>{doc.page_content}</description>\n"
+    #     f"  </laptop>"
+    #     for doc, score in reranked_docs_with_scores
+    # ]) + 
+    # "\n</laptops>"
+    # )
+
+    # Merge descriptions of the reviews that belong to same laptop_id
+    merged_docs = defaultdict(list)
+
+    for doc, score in reranked_docs_with_scores:
+        laptop_id = doc.metadata['laptop_id']
+        merged_docs[laptop_id].append(doc.page_content)
+
+    merged_laptops = {
+        laptop_id: "\n".join(descriptions) for laptop_id, descriptions in merged_docs.items()
+    }
+
+    context = (
+        "<laptops>\n" +
+        "\n".join([
+            f"  <laptop>\n"
+            f"    <id>{laptop_id}</id>\n"
+            f"    <description>{description}</description>\n"
+            f"  </laptop>"
+            for laptop_id, description in merged_laptops.items()
+        ]) + 
+        "\n</laptops>"
+    )
+    
+    # Generate response from LLM
+    print(f"{Fore.RED}5.) Generate reponse using LLM...{Style.RESET_ALL}")
+    llm = LLM(model=os.getenv("MODEL_NAME"), temperature=0)
+    llm_response = llm.generate(query=query, context=context)
+    print(f"Answer: {Fore.GREEN}{llm_response}{Style.RESET_ALL}")

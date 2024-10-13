@@ -18,15 +18,6 @@
         "score": 0.39540374279022217
     },
     {
-        "content": "\n\nReview's Title: Pretty good\n\r\n**Review's Rating of the Laptop**: 4\r\n\r\n**Review's Content**:\r\nReceived it yesterday. It has a 100% plastic body. Touchscreen works well. Touchpad is also great. Boots in seconds. It has a port for USB type-A where you should be able to insert a harddisk/pendrive or any USB device, but unfortunately you'll have to do that forcefully as the port is very tigh/small for those devices. It has a USB type-C port, a 3.5 mm audio jack and a slot for memory card. I have used it for around 9 hours and approx. 50% battery is used. It has 64 GB RAM, the OS occupies ~17 GB of it. Apps like Google docs, slides, sheets, photos, Gmail, YouTube music, etc are pre-installed (though don't work great). Any app that is available on the playstore can be installed on Chrome OS (many of the apps are designed for the phone's or tablets, so might not look good on Chromebooks). You can activate Linux (beta) if you want so (have to dedicate some disk space to that as well). You can expand the memory upto 256 GB using a memory card.  The screen's brightness is good for indoors. The laptop weighs just more than a kg and light, but should be lighter according to its small body. You get OS and security updates up to 2028.Overall it's a good buy.\r\n\r\n**Review's Likes**: 361\r\n**Review's Dislikes**: 104\r\n",
-        "metadata": {
-            "document_id": 6,
-            "chunk_id": 6,
-            "laptop_id": "1"
-        },
-        "score": 0.367689311504364
-    },
-    {
         "content": "\n\nReview's Title: Super!\n\r\n**Review's Rating of the Laptop**: 5\r\n\r\n**Review's Content**:\r\nThis is very good laptop in low budget....Camera is not that much good, but average type.Otherwise all performance are very good.After 8 months use I can say that this laptop is awesome 👍🏻 Must buy. It's very useful in study purpose, video editing purposes, business purpose, storage purpose, some types of game purpose. 👍🏻\r\n\r\n**Review's Likes**: 18\r\n**Review's Dislikes**: 0\r\n",
         "metadata": {
             "document_id": 28,
@@ -36,12 +27,21 @@
         "score": 0.35801032185554504
     },
     {
-        "content": "\n\nReview's Title: Good choice\n\r\n**Review's Rating of the Laptop**: 4\r\n\r\n**Review's Content**:\r\nProduct is good and decent. It is completely value for money. Like there are a lot of things where the company cuts the price. For example Speakers, Display, Keyboard. Speaker is just speaker no base or high volume. Display is also Not very good not very bad and Keyboard is like decent there is no backlight keyboard and Alphabets or number on keys are also like simple white coloured Sticker. I mean this laptop is totally worth it with the cost. If you want to use it like simple meetings, Office, typing, Classes or some normal coding. It is best for it for it Cost.\r\n\r\n**Review's Likes**: 121\r\n**Review's Dislikes**: 35\r\n",
+        "content": "\n\nReview's Title: Terrific purchase\n\r\n**Review's Rating of the Laptop**: 5\r\n\r\n**Review's Content**:\r\nNice in Budget... Only for Business Persons and Light Coding. Not for GAMERS..IN BUDGET ITS IS GOOD Score Perfomance. 8/10Battery. 8/10( backup 10 hours)No Heating. 10/10Color. 6/10(Easily Dirty)Weight. 8/10Charging. 5/10( 2 hours battery Charging)Ports. 10/10Cons. No Backlight KeyboardIt's is Easily Dirty by Our handsIf any want to take this Laptop go for 512GB Storage. ",
         "metadata": {
-            "document_id": 29,
-            "chunk_id": 29,
+            "document_id": 32,
+            "chunk_id": 32,
             "laptop_id": "3"
         },
-        "score": 0.3371031880378723
+        "score": 0.3311244249343872
+    },
+    {
+        "content": "**Processor Brand**: Intel  \r\n**Processor Name**: Core i3  \r\n**RAM**: 8 GB  \r\n**Storage Type**: SSD  \r\n**Storage Capacity**: 512 GB\r\n**Screen Size**: 14 Inch",
+        "metadata": {
+            "document_id": 22,
+            "chunk_id": 22,
+            "laptop_id": "3"
+        },
+        "score": 0.13622532784938812
     }
 ]
