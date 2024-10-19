@@ -1,9 +1,7 @@
-### Review's Title: Just wow!
-
-**Review's Rating of the Laptop**: 5
+### Review's Title: Must buy!
 
 **Review's Content**:
-An amazing device especially for high & smooth performance. Online classes goes well.. Touch & type makes it more effective & efficient. Worth buying :)
+Best budget laptop. If you are doing light weight tasks then it will work smooth.Don't use for heavy tasks.Overall good laptop in budget.
 
-**Review's Likes**: 512
-**Review's Dislikes**: 107
+**Review's Likes**: 4
+**Review's Dislikes**: 0

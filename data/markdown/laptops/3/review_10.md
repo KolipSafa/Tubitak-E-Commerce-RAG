@@ -1,9 +1,7 @@
-### Review's Title: Must buy!
-
-**Review's Rating of the Laptop**: 5
+### Review's Title: Great product
 
 **Review's Content**:
-Good👍🏻 i have expirance lenovo naw iam use Acer let see in future. how will be new brand Expirence
+Compact laptop, 14 inch is perfect to carry around especially for students.Great screen and good build quality. Fully recommend for someone looking in a tight budget.
 
-**Review's Likes**: 9
-**Review's Dislikes**: 0
+**Review's Likes**: 8
+**Review's Dislikes**: 2

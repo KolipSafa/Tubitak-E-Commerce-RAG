@@ -2,13 +2,16 @@ import textwrap
 from classes.product import Product
 
 class Laptop(Product):
-    def __init__(self, id=None, name=None, url=None, processor_name=None, processor_brand=None, 
-                 ram_capacity=None, storage_type=None, storage_capacity=None, screen_size=None, reviews=None):
+    def __init__(self, id=None,product_id=None, name=None, url=None, processor_name="Unknown", processor_brand="Unknown", 
+                 graphic_processor="Unknown", ram_capacity="Unknown", storage_type="Unknown", 
+                 storage_capacity="Unknown", screen_size="Unknown", reviews="Unknown"):
         self.id = str(id)
+        self.product_id = product_id
         self.name = name
         self.url = url
         self.processor_brand = processor_brand
         self.processor_name = processor_name
+        self.graphic_processor = graphic_processor
         self.ram_capacity = ram_capacity
         self.storage_type = storage_type
         self.storage_capacity = storage_capacity
@@ -22,6 +25,7 @@ class Laptop(Product):
         return textwrap.dedent(f"""
         **Processor Brand**: {self.processor_brand}  
         **Processor Name**: {self.processor_name}  
+        **Graphic Processor** {self.graphic_processor}  
         **RAM**: {self.ram_capacity}  
         **Storage Type**: {self.storage_type}  
         **Storage Capacity**: {self.storage_capacity}
@@ -32,8 +36,8 @@ class Laptop(Product):
         md_text = ''
         if 'title' in review and review['title']:
             md_text += f"### Review's Title: {review['title']}\n\n"
-        if 'rating' in review and review['rating']:
-            md_text += f"**Review's Rating of the Laptop**: {review['rating']}\n\n"
+        # if 'rating' in review and review['rating']:
+        #     md_text += f"**Review's Rating of the Laptop**: {review['rating']}\n\n"
         # if 'writtenBy' in review and review['writtenBy']:
         #     md_text += f"**Written By**: {review['writtenBy']}\n\n"
         if 'content' in review and review['content']:

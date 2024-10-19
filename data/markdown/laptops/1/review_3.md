@@ -1,9 +1,7 @@
-### Review's Title: Fair
-
-**Review's Rating of the Laptop**: 3
+### Review's Title: Awesome
 
 **Review's Content**:
-Battery life was too good,Display and working also good,But small in size.Sound quality is ok than i expected.Weight less easy to carryOver all Good. I have worked this product  for almost one month i really like it.Use for students.
+Awesome product
 
-**Review's Likes**: 354
-**Review's Dislikes**: 79
+**Review's Likes**: 40
+**Review's Dislikes**: 11

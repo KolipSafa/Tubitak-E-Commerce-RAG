@@ -1,9 +1,7 @@
-### Review's Title: Super!
-
-**Review's Rating of the Laptop**: 5
+### Review's Title: Value-for-money
 
 **Review's Content**:
-Sir absulatly is too good sir wow 💯🙏
+Good product
 
-**Review's Likes**: 4
-**Review's Dislikes**: 0
+**Review's Likes**: 43
+**Review's Dislikes**: 17

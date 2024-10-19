@@ -1,9 +1,7 @@
-### Review's Title: Excellent
-
-**Review's Rating of the Laptop**: 5
+### Review's Title: Very Good
 
 **Review's Content**:
-Nice
+good
 
-**Review's Likes**: 111
-**Review's Dislikes**: 28
+**Review's Likes**: 3
+**Review's Dislikes**: 0

@@ -1,9 +1,7 @@
-### Review's Title: Decent product
-
-**Review's Rating of the Laptop**: 3
+### Review's Title: Best in the market!
 
 **Review's Content**:
-Ms office not included
+So super performance design and value for money I love it , I like it❤️❤️
 
-**Review's Likes**: 20
-**Review's Dislikes**: 1
+**Review's Likes**: 3
+**Review's Dislikes**: 0

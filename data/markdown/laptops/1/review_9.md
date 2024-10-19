@@ -1,9 +1,7 @@
-### Review's Title: Awesome
-
-**Review's Rating of the Laptop**: 5
+### Review's Title: Perfect product!
 
 **Review's Content**:
-Awesome product from hp best for students
+Very good experience laptop best quality  display is very good battery life 6-7 h good 👍 I am happy thanks Prime book
 
-**Review's Likes**: 95
-**Review's Dislikes**: 14
+**Review's Likes**: 4
+**Review's Dislikes**: 0

@@ -1,9 +1,7 @@
-### Review's Title: Terrific
-
-**Review's Rating of the Laptop**: 5
+### Review's Title: Value-for-money
 
 **Review's Content**:
-Good for
+Value for money good at this price segmentCould be more better But it's good to go for basic and daily work Good for students and office work
 
-**Review's Likes**: 17
-**Review's Dislikes**: 7
+**Review's Likes**: 16
+**Review's Dislikes**: 3

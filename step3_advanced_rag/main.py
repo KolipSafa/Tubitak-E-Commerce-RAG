@@ -24,13 +24,11 @@ if __name__ == '__main__':
     print(f"{Fore.YELLOW}=====Advanced RAG Pipeline====={Style.RESET_ALL}")
     # Load Utils
     utils = Utils()
-    utils.check_dir(".indices")
     load_dotenv()
     
     # Load the dataset (train split) that's already chunked
     print(f"{Fore.RED}1.) Loading and chunking dataset...{Style.RESET_ALL}")
-    print(os.getenv("LATOP_CHUNKED_DATASET_PATH"))
-    dataset = Dataset(os.getenv("LATOP_CHUNKED_DATASET_PATH"), "train")
+    dataset = Dataset(os.getenv("LAPTOP_CHUNKED_DATASET_PATH"), "train")
     documents = dataset.get_dataset_as_documents()
 
     # Generate embeddings for the documents using SentenceBERT and index them using FAISS
@@ -57,7 +55,7 @@ if __name__ == '__main__':
         # Save the index
         vector_store.save_local(indices_path)
     else:
-        vector_store = FAISS.load_local(indices_path, embeddings=sentence_bert.get_model().encode,allow_dangerous_deserialization=True)
+        vector_store = FAISS.load_local(indices_path, embeddings=sentence_bert.get_model().encode, allow_dangerous_deserialization=True)
     
     # Retrieve the top-k documents for a query using the FAISS index
     print(f"{Fore.RED}3.) Retrieve Top-K documents using FAISS...{Style.RESET_ALL}")
@@ -69,22 +67,10 @@ if __name__ == '__main__':
 
     #Rerank the top-n documents using DistilBERT
     print(f"{Fore.RED}4.) Re-Ranking documents using distilBERT and retrieving Top-N documents...{Style.RESET_ALL}")
-    docs = [doc for doc, score in docs_with_scores]
+    only_docs = [doc for doc, score in docs_with_scores]
     reranker = Reranker("sentence-transformers/msmarco-distilbert-base-v3")
-    reranked_docs_with_scores = reranker.rerank(docs, query, top_n=5)
+    reranked_docs_with_scores = reranker.rerank(only_docs, query, top_n=5)
     utils.save_docs_with_scores(reranked_docs_with_scores, 'data/reranked_documents.json')
-    
-    # context = (
-    # "<laptops>\n" + 
-    # "\n".join([
-    #     f"  <laptop>\n"
-    #     f"    <laptop_id>{doc.metadata['laptop_id']}</laptop_id>\n"
-    #     f"    <description>{doc.page_content}</description>\n"
-    #     f"  </laptop>"
-    #     for doc, score in reranked_docs_with_scores
-    # ]) + 
-    # "\n</laptops>"
-    # )
 
     # Merge descriptions of the reviews that belong to same laptop_id
     merged_docs = defaultdict(list)
@@ -110,7 +96,7 @@ if __name__ == '__main__':
     )
     
     # Generate response from LLM
-    print(f"{Fore.RED}5.) Generate reponse using LLM...{Style.RESET_ALL}")
+    print(f"{Fore.RED}5.) Generate response using LLM...{Style.RESET_ALL}")
     llm = LLM(model=os.getenv("MODEL_NAME"), temperature=0)
     llm_response = llm.generate(query=query, context=context)
     print(f"Answer: {Fore.GREEN}{llm_response}{Style.RESET_ALL}")

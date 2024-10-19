@@ -1,9 +1,7 @@
-### Review's Title: Terrific
-
-**Review's Rating of the Laptop**: 5
+### Review's Title: Just wow!
 
 **Review's Content**:
-Good 😊
+Very nice product.
 
-**Review's Likes**: 55
-**Review's Dislikes**: 13
+**Review's Likes**: 118
+**Review's Dislikes**: 26

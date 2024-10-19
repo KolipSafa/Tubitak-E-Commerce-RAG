@@ -1,9 +1,7 @@
-### Review's Title: Worth the money
-
-**Review's Rating of the Laptop**: 4
+### Review's Title: Mind-blowing purchase
 
 **Review's Content**:
-Nice!
+Value for money, Go for it 👌
 
-**Review's Likes**: 607
-**Review's Dislikes**: 132
+**Review's Likes**: 17
+**Review's Dislikes**: 2

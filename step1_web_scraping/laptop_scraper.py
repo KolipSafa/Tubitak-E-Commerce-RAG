@@ -2,7 +2,7 @@ import time
 from selenium import webdriver 
 from bs4 import BeautifulSoup
 import os
-from classes.LaptopDatabase import LaptopDatabase
+from classes.db.LaptopSQLiteDb import LaptopSQLiteDb
 from classes.WebDriverThread import WebDriverThread
 from dotenv import load_dotenv
 
@@ -29,7 +29,8 @@ while len(all_laptop_urls) < MAX_LAPTOP_COUNT:
     all_laptop_a = soup.findAll('a', href=True, attrs={'class': constants.ALL_LAPTOPS_A}, limit=(MAX_LAPTOP_COUNT - len(all_laptop_urls)))
 
     for a in all_laptop_a:
-        all_laptop_urls.append("https://www.flipkart.com" + a['href'])
+        url_without_query = a['href'].split('?')[0]
+        all_laptop_urls.append("https://www.flipkart.com" +  url_without_query)
     
     if len(all_laptop_urls) >= MAX_LAPTOP_COUNT:
         break
@@ -69,7 +70,7 @@ def save_laptop_as_markdown(base_directory, laptop: Laptop):
         with open(review_filename , 'w',encoding='utf-8') as file:
             file.write(laptop.review_to_md_text(review))
 
-laptop_db = LaptopDatabase(str(os.getenv('LAPTOP_DB_PATH')))
+laptop_db = LaptopSQLiteDb(str(os.getenv('LAPTOP_DB_PATH')))
 
 # Laptops that will be being scrapped
 for url in all_laptop_urls:
@@ -94,14 +95,15 @@ for url in all_laptop_urls:
     name = soup.find('span', attrs={'class': constants.NAME_SPAN}).string.split('-')[0].rstrip()
 
     processor_memory_features_tbody = soup.find('div', attrs={'class': constants.SPECIFICATIONS_PARENT_DIV}).contents[1].contents[1].contents[0]
-    spec_keys = ['Processor Brand', 'Processor Name', 'RAM', 'Storage Type','SSD Capacity']
+    spec_keys = ['Processor Brand', 'Processor Name', 'RAM', 'Storage Type','SSD Capacity','Graphic Processor']
     specs = get_laptop_specifications(processor_memory_features_tbody, spec_keys)
 
-    processor_brand = specs.get('Processor Brand',None)
-    processor_name = specs.get('Processor Name',None)
-    ram_capacity = specs.get('RAM',None)
-    storage_type = specs.get('Storage Type',None)
-    storage_capacity = specs.get('SSD Capacity',None)
+    processor_brand = specs.get('Processor Brand',"Unknown")
+    processor_name = specs.get('Processor Name',"Unknown")
+    graphic_processor = specs.get('Graphic Processor',"Unknown")
+    ram_capacity = specs.get('RAM',"Unknown")
+    storage_type = specs.get('Storage Type',"Unknown")
+    storage_capacity = specs.get('SSD Capacity',"Unknown")
 
     display_features_tbody = soup.find('div', attrs={'class': constants.SPECIFICATIONS_PARENT_DIV}).contents[4].contents[1].contents[0]
     spec_keys = ['Screen Size']
@@ -110,14 +112,18 @@ for url in all_laptop_urls:
     screen_size = specs.get('Screen Size',None)
     if screen_size:
         screen_size = screen_size.split('(')[1].split(')')[0]
+
+    product_id = url.rpartition('/')[-1]
     
     # Add the laptop to the array
-    laptop = Laptop(url=url,name=name,processor_brand=processor_brand,
-                    processor_name=processor_name,ram_capacity=ram_capacity,
+    laptop = Laptop(url=url,product_id=product_id,name=name,
+                    processor_brand=processor_brand,processor_name=processor_name,ram_capacity=ram_capacity,
                     storage_type=storage_type,storage_capacity=storage_capacity,
-                    screen_size=screen_size,reviews=reviews)
+                    screen_size=screen_size,reviews=reviews,graphic_processor=graphic_processor)
     
-    added_laptop_id = laptop_db.add_laptop(laptop.name, laptop.url)
+    #Add laptop to the database
+    added_laptop_id = laptop_db.add_laptop(laptop)
+    #TO DO: mongo db ekleme yapılacak
 
     if not added_laptop_id:
         continue 

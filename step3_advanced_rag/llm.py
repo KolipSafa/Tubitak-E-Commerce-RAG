@@ -33,7 +33,7 @@ class LLM:
         - "score": A number between 1 and 5 indicating similarity to the user's query (integer)
         - "summary": A brief, colloquial summary explaining how well the laptop matches the user's needs and any missing features (string)
 
-        Do not expose laptop_id value in summary field in the output json.
+        In the summary field, **do not mention or refer to the laptop_id**. Focus only on the features and suitability of the laptop for the user's needs without including any identifiers.
 
         The following context includes each laptop's id, its description and its similarity score to the user's query.
 

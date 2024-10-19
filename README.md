@@ -2,6 +2,8 @@
 
 ## To-do List
 
+- [] Summarize and sanitize scraped reviews before chunking
+- [] Add scraping for other devices
 - [x] Update reranker for new faiss system
 - [x] Change faiss to langchain faiss in step3
 
@@ -13,7 +15,7 @@
   LAPTOP_DB_PATH='data\db\laptops.db'
   LAPTOP_MARKDOWNS_PATH='data\markdown\laptops'
   LAPTOP_VECTOR_DB_PATH='data\vector_db\laptops.idx'
-  LATOP_CHUNKED_DATASET_PATH='data/chunked/laptop_chunks.jsonl'
+  LAPTOP_CHUNKED_DATASET_PATH='data/chunked/laptop_chunks.jsonl'
 
   OPENAI_API_KEY="your-openai-key"
   TOKENIZERS_PARALLELISM=true

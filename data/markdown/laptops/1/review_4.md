@@ -1,9 +1,7 @@
-### Review's Title: Does the job
-
-**Review's Rating of the Laptop**: 3
+### Review's Title: Super!
 
 **Review's Content**:
-All good but bluetooth not working and swith on automatically want to replace thank u
+Nice Product also value for money. I am happy with the product and also prefer you . But one problame that there doesnot have any cooling system. Overall its good for students.
 
-**Review's Likes**: 58
-**Review's Dislikes**: 9
+**Review's Likes**: 39
+**Review's Dislikes**: 15
