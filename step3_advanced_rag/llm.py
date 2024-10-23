@@ -17,35 +17,46 @@ class LLM:
     def generate(self, query: str, context: str) -> str:
         """Generate a response from an LLM using the given context"""
         system_prompt = """
-        You are a Technology Consultant tasked with finding the most suitable laptops based on the user's description.
+        You are a Technology Consultant tasked with finding the most suitable laptops based on the user's request, using the context provided within the <given_context> tags.
 
-        You must assess the descriptions to determine how closely they match the user's query, providing a score from 1 to 5 where:
-        - 1 = Very low match
-        - 2 = Low match
-        - 3 = Average match
-        - 4 = High match
-        - 5 = Excellent match
+        <instructions>
+        1.Understand the User's Request:
+        - Carefully read the user's request to grasp their specific needs and preferences.
 
+        2.Assess Each Laptop:
+        - For each laptop in the given context, evaluate how closely it matches the user's requirements.
+        - Assign a score from 1 to 5, where:
+            - 1 = Very low match
+            - 2 = Low match
+            - 3 = Average match
+            - 4 = High match
+            - 5 = Excellent match
 
-        Your task is to strictly output the response in valid JSON format, with the following structure for each laptop:
+        3.Write a Summary:
+        - In the "summary" field, provide a brief, colloquial explanation of how well the laptop meets the user's needs.
+        - Mention relevant features and any missing aspects.
+        - Do not mention or refer to the "laptop_id" or any other identifiers.
 
-        - "laptop_id": The laptop's identifier (string)
-        - "score": A number between 1 and 5 indicating similarity to the user's query (integer)
-        - "summary": A brief, colloquial summary explaining how well the laptop matches the user's needs and any missing features (string)
+        4.Output Format:
+        - Output a JSON array of objects, one for each laptop, the schema defined in the `<output_json_schema>` tags.
+        - Do not include any additional text or explanations; only return the JSON object.
+        </instructions>
 
-        In the summary field, **do not mention or refer to the laptop_id**. Focus only on the features and suitability of the laptop for the user's needs without including any identifiers.
+        <output_json_schema>
+        - "laptop_id" (string): The laptop's identifier.
+        - "score" (integer): A number between 1 and 5 indicating how closely the laptop matches the user's request.
+        - "summary" (string): A brief, colloquial summary explaining how well the laptop matches the user's needs and any missing features.
+        </output_json_schema>
 
-        The following context includes each laptop's id, its description and its similarity score to the user's query.
-
-        Context:
+        The following <given_context> tags include the given context that have each laptop's id, technical specifications and review.
+        <given_context>
             {context}
+        </given_context>
         """
 
         user_prompt = """
-        User Description:
+        User's Request:
         {query}
-
-        Output the JSON array of objects for each laptop. Do not include any other text or explanations, just return the JSON object.
         """
         
         llm = ChatOllama(temperature=self.temperature, model=self.model)

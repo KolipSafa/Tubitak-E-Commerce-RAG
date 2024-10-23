@@ -2,6 +2,7 @@
 
 ## To-do List
 
+- [] Implement MultiQueryRetriever
 - [] Summarize and sanitize scraped reviews before chunking
 - [] Add scraping for other devices
 - [x] Update reranker for new faiss system

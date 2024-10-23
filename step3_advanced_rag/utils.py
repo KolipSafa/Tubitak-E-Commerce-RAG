@@ -1,6 +1,8 @@
 import json
 import random
 import os
+import textwrap
+
 
 class Utils:
     @staticmethod
@@ -31,12 +33,15 @@ class Utils:
             json.dump(data, f, ensure_ascii=False, indent=4)
 
     @staticmethod
-    def save_llm_result(full_prompt: str, response: str, file_path):
-        """Save the prompt and LLM response to a JSON file"""
+    def save_llm_result(full_prompt: str, response: str, file_path, max_line_length=120):
+        """Save the prompt and LLM response to a JSON file with a maximum string length per line"""
+
+        wrapped_prompt = "\n".join(textwrap.wrap(full_prompt, max_line_length))
+        wrapped_response = "\n".join(textwrap.wrap(response, max_line_length))
 
         output_data = {
-            "prompt": full_prompt,
-            "response": response
+            "prompt": wrapped_prompt,
+            "response": wrapped_response
         }
 
         with open(file_path, "w", encoding="utf-8") as json_file:

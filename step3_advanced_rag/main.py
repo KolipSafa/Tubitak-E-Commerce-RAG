@@ -17,6 +17,7 @@ from llm import LLM
 from dotenv import load_dotenv
 from langchain_community.docstore.in_memory import InMemoryDocstore
 from langchain_community.vectorstores import FAISS
+from db_fetcher import DBFetcher
 
 sys.stdout = io.TextIOWrapper(sys.stdout.detach(), encoding='utf-8')
 
@@ -59,7 +60,7 @@ if __name__ == '__main__':
     
     # Retrieve the top-k documents for a query using the FAISS index
     print(f"{Fore.RED}3.) Retrieve Top-K documents using FAISS...{Style.RESET_ALL}")
-    query = "i need a laptop for playing gta v"
+    query = "I need a laptop to play gta v game."
     retriever = Retriever()
     docs_with_scores = retriever.search(vector_store=vector_store, query=query, top_k=5)
     # print(docs)
@@ -72,7 +73,7 @@ if __name__ == '__main__':
     reranked_docs_with_scores = reranker.rerank(only_docs, query, top_n=5)
     utils.save_docs_with_scores(reranked_docs_with_scores, 'data/reranked_documents.json')
 
-    # Merge descriptions of the reviews that belong to same laptop_id
+    # Merge review of the reviews that belong to same laptop_id
     merged_docs = defaultdict(list)
 
     for doc, score in reranked_docs_with_scores:
@@ -80,18 +81,41 @@ if __name__ == '__main__':
         merged_docs[laptop_id].append(doc.page_content)
 
     merged_laptops = {
-        laptop_id: "\n".join(descriptions) for laptop_id, descriptions in merged_docs.items()
+        laptop_id: "\n".join(review) for laptop_id, review in merged_docs.items()
     }
+
+    # Fetch specs from DB
+    db_fetcher = DBFetcher(os.getenv('LAPTOP_DB_PATH'))
+    table_name_to_fetch='laptops'
+    columns_to_fetch = [
+    'processor_brand', 
+    'processor_name', 
+    'graphic_processor', 
+    'ram_capacity', 
+    'storage_type', 
+    'storage_capacity', 
+    'screen_size'
+    ]
+
+    laptop_entries = []
+
+    for laptop_id, review in merged_laptops.items():
+        laptop_data = db_fetcher.get_by_id(table_name_to_fetch, laptop_id, columns_to_fetch)
+        print(laptop_data)
+        laptop_xml = db_fetcher.to_xml(laptop_data)
+
+        laptop_entry = (
+            f"  <laptop>\n"
+            f"    <id>{laptop_id}</id>\n"
+            f"    <review>{review}</review>\n"
+            f"    {laptop_xml}\n"
+            f"  </laptop>"
+        )
+        laptop_entries.append(laptop_entry)
 
     context = (
         "<laptops>\n" +
-        "\n".join([
-            f"  <laptop>\n"
-            f"    <id>{laptop_id}</id>\n"
-            f"    <description>{description}</description>\n"
-            f"  </laptop>"
-            for laptop_id, description in merged_laptops.items()
-        ]) + 
+        "\n".join(laptop_entries) +
         "\n</laptops>"
     )
     

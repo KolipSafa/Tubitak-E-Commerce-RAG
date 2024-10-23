@@ -1,0 +1,47 @@
+[
+    {
+        "content": "\n\nReview's Title: Highly recommended\n\r\n**Review's Content**:\r\nPros :Intel core i3 13th gen - Superb performance and booting within seconds.Display - Cristal Clear display.Design - Metallic body, Very slim and light weight. Feels like a premium laptop.Battery - Fast charging  and good battery backup. C type charger.Samsung applications and Bixby support is there.Cons : Trail version McAfee antivirus. Need to buy after trail period.Speaker sounds very low. It's comes with UHD Intel graphics. But in Flipkart product specs it's showing intel iris xe graphics.This laptop comes under notebook 4 series but specs are same like Galaxy Book3  NP754XFG-KB3IN . Only difference is display size. If you are looking a laptop for study purpose highly recommend this. Not preferable for gaming and heavy work loads like rendering, Editings .This is an intel 13th gen entry level laptop.\r\n\r\n**Review's Likes**: 5\r\n**Review's Dislikes**: 0\r\n",
+        "metadata": {
+            "document_id": 19,
+            "chunk_id": 21,
+            "laptop_id": "2"
+        },
+        "score": 0.29621613025665283
+    },
+    {
+        "content": "\n\nReview's Title: Great product\n\r\n**Review's Content**:\r\nCompact laptop, 14 inch is perfect to carry around especially for students.Great screen and good build quality. Fully recommend for someone looking in a tight budget.\r\n\r\n**Review's Likes**: 8\r\n**Review's Dislikes**: 2\r\n",
+        "metadata": {
+            "document_id": 24,
+            "chunk_id": 26,
+            "laptop_id": "3"
+        },
+        "score": 0.23583659529685974
+    },
+    {
+        "content": "\n\nReview's Title: Perfect product!\n\r\n**Review's Content**:\r\nVery good experience laptop best quality  display is very good battery life 6-7 h good 👍 I am happy thanks Prime book\r\n\r\n**Review's Likes**: 4\r\n**Review's Dislikes**: 0\r\n",
+        "metadata": {
+            "document_id": 10,
+            "chunk_id": 10,
+            "laptop_id": "1"
+        },
+        "score": 0.21552212536334991
+    },
+    {
+        "content": "**Processor Brand**: Intel  \r\n**Processor Name**: Core i3  \r\n**Graphic Processor** Intel Integrated UHD  \r\n**RAM**: 8 GB  \r\n**Storage Type**: SSD  \r\n**Storage Capacity**: 512 GB\r\n**Screen Size**: 14 Inch",
+        "metadata": {
+            "document_id": 22,
+            "chunk_id": 24,
+            "laptop_id": "3"
+        },
+        "score": 0.1452224850654602
+    },
+    {
+        "content": "**Processor Brand**: Intel  \r\n**Processor Name**: Core i3  \r\n**Graphic Processor** Intel Integrated Iris Xe  \r\n**RAM**: 8 GB  \r\n**Storage Type**: SSD  \r\n**Storage Capacity**: 512 GB\r\n**Screen Size**: 15.6 Inch",
+        "metadata": {
+            "document_id": 11,
+            "chunk_id": 11,
+            "laptop_id": "2"
+        },
+        "score": 0.13036063313484192
+    }
+]
