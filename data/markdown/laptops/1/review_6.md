@@ -1,7 +1,7 @@
-### Review's Title: Simply awesome
+### Review's Title: Perfect product!
 
 **Review's Content**:
-Best price good quality 🥰🥰
+I'm very satisfied with this laptop, it performs well and has a great design.
 
-**Review's Likes**: 5
-**Review's Dislikes**: 0
+**Review's Likes**: 14
+**Review's Dislikes**: 3

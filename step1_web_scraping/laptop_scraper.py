@@ -9,8 +9,9 @@ from dotenv import load_dotenv
 from classes.laptop import Laptop
 from helpers.get_laptop_reviews import get_laptop_reviews
 import constants.laptop_constants as constants
+from classes.text_summarizer import TextSummarizer
 
-MAX_LAPTOP_COUNT = 3
+MAX_LAPTOP_COUNT = 1
 MAX_LAPTOP_REVIEW_PAGE_COUNT = 1 # 10 reviews per one page
 CURR_PAGE_NUMBER = 1 
 
@@ -19,6 +20,7 @@ driver.implicitly_wait(5)
 load_dotenv()
 
 all_laptop_urls = []
+laptop_array: list [Laptop] = [] 
 
 # Getting All Laptop Urls
 while len(all_laptop_urls) < MAX_LAPTOP_COUNT:
@@ -37,6 +39,8 @@ while len(all_laptop_urls) < MAX_LAPTOP_COUNT:
 
     CURR_PAGE_NUMBER += 1
     time.sleep(2) 
+
+all_laptop_urls= ['https://www.flipkart.com/asus-tuf-gaming-a15-amd-ryzen-7-octa-core-7435hs-16-gb-512-gb-ssd-windows-11-home-4-graphics-nvidia-geforce-rtx-3050-fa566ncr-hn075w-laptop/p/itmf85ee66cab735?pid=COMHFT2NY5V7RCMK&lid=LSTCOMHFT2NY5V7RCMKJW0ZPL&marketplace=FLIPKART&store=6bo%2Fb5g&srno=b_1_8&otracker=browse&fm=organic&iid=d65296a8-49b3-49e9-9db1-5bde70ffbcf6.COMHFT2NY5V7RCMK.SEARCH&ppt=None&ppn=None&ssid=1eyabyvkcob74a9s1730220324266']
 
 # Getting Each Laptop Detail
 laptop_array : list[Laptop]  = []
@@ -59,16 +63,32 @@ def save_laptop_as_markdown(base_directory, laptop: Laptop):
     laptop_directory = os.path.join(base_directory, laptop.id)
     os.makedirs(laptop_directory, exist_ok=True)
 
-    # write features
-    features_filename = os.path.join(laptop_directory, "features.md")
-    with open(features_filename, 'w') as file:
-        file.write(laptop.features_to_md_text())
+    # write reviews
+    for index, review in enumerate(laptop.reviews,start=1):
+        review_filename = os.path.join(laptop_directory, f"review_{index}.md")
+        with open(review_filename , 'w',encoding='utf-8') as file:
+            file.write(laptop.review_to_md_text(review))
+
+def save_laptop_as_markdown(base_directory, laptop: Laptop):
+    laptop_directory = os.path.join(base_directory, laptop.id)
+    os.makedirs(laptop_directory, exist_ok=True)
 
     # write reviews
     for index, review in enumerate(laptop.reviews,start=1):
         review_filename = os.path.join(laptop_directory, f"review_{index}.md")
         with open(review_filename , 'w',encoding='utf-8') as file:
             file.write(laptop.review_to_md_text(review))
+
+def save_laptop_as_json(base_directory, laptop: Laptop):
+    laptop_directory = os.path.join(base_directory, laptop.id)
+    os.makedirs(laptop_directory, exist_ok=True)
+
+    # Write reviews
+    for index, review in enumerate(laptop.reviews, start=1):
+        review_filename = os.path.join(laptop_directory, f"review_{index}.json")
+        with open(review_filename, 'w', encoding='utf-8') as file:
+            json_data = laptop.review_to_json(review) 
+            file.write(json_data)
 
 laptop_db = LaptopSQLiteDb(str(os.getenv('LAPTOP_DB_PATH')))
 
@@ -129,7 +149,16 @@ for url in all_laptop_urls:
         continue 
 
     laptop.id = str(added_laptop_id)
-    save_laptop_as_markdown(str(os.getenv('LAPTOP_MARKDOWNS_PATH')), laptop)
+    save_laptop_as_json(str(os.getenv('LAPTOP_JSONS_PATH')), laptop)
     laptop_array.append(laptop)
 
 driver.quit()
+
+#Review Summarizer
+summarizer = TextSummarizer()
+
+for laptop in laptop_array:
+    for review in laptop.reviews:
+        review["content"] = summarizer.summarize(review.get("content", ""))
+
+    save_laptop_as_markdown(str(os.getenv('LAPTOP_MARKDOWNS_PATH')), laptop)

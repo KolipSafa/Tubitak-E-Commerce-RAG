@@ -1,7 +1,7 @@
-### Review's Title: Excellent
+### Review's Title: Good choice
 
 **Review's Content**:
-Super Product, value of money, but Little bit battery drain fast. I buy one more product,
+I love the laptop, but had issues with the display after just 4 days. Hope Asus and Flipkart improve packaging and customer support.
 
-**Review's Likes**: 12
-**Review's Dislikes**: 3
+**Review's Likes**: 3
+**Review's Dislikes**: 0

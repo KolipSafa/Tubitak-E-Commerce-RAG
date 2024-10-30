@@ -1,7 +1,7 @@
-### Review's Title: Perfect product!
+### Review's Title: Really Nice
 
 **Review's Content**:
-Very good experience laptop best quality  display is very good battery life 6-7 h good 👍 I am happy thanks Prime book
+This laptop is great value, but it doesn't have good battery life.
 
-**Review's Likes**: 4
+**Review's Likes**: 2
 **Review's Dislikes**: 0

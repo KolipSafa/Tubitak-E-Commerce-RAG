@@ -1,7 +1,7 @@
-### Review's Title: Good
+### Review's Title: Highly recommended
 
 **Review's Content**:
-Primebook looks good 👍 Battery is awesome 👌 But it's only for students...we can open 5 6 tab at the same time. I purchased it for trading and I'm very disappointed...it's not good for trading in stock market.... chart hide automatically again and again... very bad 👎 for trading....It's only for students and simple types of works
+I got this laptop (16GB/512GB) with AMD 7 Ryzen 7 HS and 3050 RTX for under 60k. The performance, build quality, and overall design are good, but battery life is a bit low due to the high-performance specs.
 
-**Review's Likes**: 23
-**Review's Dislikes**: 6
+**Review's Likes**: 6
+**Review's Dislikes**: 0

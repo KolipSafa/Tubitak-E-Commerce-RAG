@@ -33,4 +33,7 @@ class Product:
             NotImplementedError: If this method is not implemented in a subclass.
         """
         raise NotImplementedError
+    
+    def review_to_json(review):
+        raise NotImplementedError
 

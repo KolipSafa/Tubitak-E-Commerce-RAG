@@ -1,3 +1,4 @@
+import json
 import textwrap
 from classes.product import Product
 
@@ -21,25 +22,10 @@ class Laptop(Product):
     def to_dict(self):
         return self.__dict__
     
-    def features_to_md_text(self):
-        return textwrap.dedent(f"""
-        **Processor Brand**: {self.processor_brand}  
-        **Processor Name**: {self.processor_name}  
-        **Graphic Processor** {self.graphic_processor}  
-        **RAM**: {self.ram_capacity}  
-        **Storage Type**: {self.storage_type}  
-        **Storage Capacity**: {self.storage_capacity}
-        **Screen Size**: {self.screen_size}  
-        """).strip()
-    
     def review_to_md_text(self,review):
         md_text = ''
         if 'title' in review and review['title']:
             md_text += f"### Review's Title: {review['title']}\n\n"
-        # if 'rating' in review and review['rating']:
-        #     md_text += f"**Review's Rating of the Laptop**: {review['rating']}\n\n"
-        # if 'writtenBy' in review and review['writtenBy']:
-        #     md_text += f"**Written By**: {review['writtenBy']}\n\n"
         if 'content' in review and review['content']:
             md_text += f"**Review's Content**:\n{review['content']}\n\n"
         if 'numberOfLikes' in review and review['numberOfLikes']:
@@ -48,6 +34,19 @@ class Laptop(Product):
             md_text += f"**Review's Dislikes**: {review['numberOfDislikes']}\n"
 
         return textwrap.dedent(md_text)
+    
+    def review_to_json(self, review):
+        json_data = {}
+        if 'title' in review and review['title']:
+            json_data['title'] = review['title']
+        if 'content' in review and review['content']:
+            json_data['content'] = review['content']
+        if 'numberOfLikes' in review and review['numberOfLikes']:
+            json_data['numberOfLikes'] = review['numberOfLikes']
+        if 'numberOfDislikes' in review and review['numberOfDislikes']:
+            json_data['numberOfDislikes'] = review['numberOfDislikes']
+
+        return json.dumps(json_data, indent=4)
 
 
 
